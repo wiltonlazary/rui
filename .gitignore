@@ -1,0 +1,7 @@
+# This repository is the workspace layer only: the projects are their own
+# repositories under <project>/wtree/_repo_.
+/*
+!/.gitignore
+!/AGENTS.md
+!/README.md
+!/.ai/
