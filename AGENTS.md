@@ -114,10 +114,17 @@ The root layer owns work that spans projects:
   (`prepare`), which the `tsc` of those after it reads. A
   change that ren-show demonstrates is finished once ren-show's
   `npm test` (and, for renderers, its headless Chrome check) passes too.
-- **Versions.** The packages share one version line (0.1.0). A release
-  bumps rrx-core, then moves ren-core's dependency from the `file:` link to that
-  version, and the renderers' ren-core dependency the same way. Nothing is
-  published or pushed unless the user asks.
+- **Versions.** The nine libraries (rrx-core to rui-core) are published on
+  npm as `@maxenve/<name>` under the MIT license and share one version line
+  (0.1.0); the applications and ren-bench stay private. Code imports the
+  bare names (`ren-core`), and consumers install under them
+  (`npm install ren-core@npm:@maxenve/ren-core`). The checkouts keep their
+  `file:` links. A release, in the order above, packs each library
+  (`npm pack`), names the packed `package.json` `@maxenve/<name>`, sets every
+  `file:` link in it to the alias `npm:@maxenve/<name>@<version>`, and publishes
+  that tarball (`npm publish <tarball> --access public`); a library's
+  dependencies are on npm before it is. Nothing is published or pushed
+  unless the user asks.
 - **Benchmarks across the family.** rrx-core, and ren-core on top of it, are measured
   against the market libraries; see [benchmarks.md](.ai/config/benchmarks.md).
 - **Keep this layer light.** Real artifacts are code, tests and docs that
