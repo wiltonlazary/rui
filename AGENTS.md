@@ -116,7 +116,7 @@ The root layer owns work that spans projects:
   `npm test` (and, for renderers, its headless Chrome check) passes too.
 - **Versions.** The nine libraries (rrx-core to rui-core) are published on
   npm as `@maxenve/<name>` under the MIT license and share one version line
-  (0.1.11); the applications and ren-bench stay private. Code imports the
+  (0.1.12); the applications and ren-bench stay private. Code imports the
   bare names (`ren-core`), and consumers install under them
   (`npm install ren-core@npm:@maxenve/ren-core`). The checkouts keep their
   `file:` links. A release, in the order above, packs each library
