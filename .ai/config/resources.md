@@ -19,8 +19,9 @@ runaway test growing off the JS heap can each exhaust the machine.
   loading (V8 flags are not allowed in NODE_OPTIONS), as ren-show's tests and
   ren-bench's Skia frame benchmark do.
 - Run one heavy job at a time, machine-wide: a test suite, a build, a
-  benchmark. Before each one, check `free -g` and `uptime`. Wait while less
-  than 8 GB is available or the load is above 20. Hold the machine-wide lock
+  benchmark. Before each one, check `free -g`, `df -h .` and `uptime`. Wait
+  while less than 8 GB of memory or 2 GB of disk is available or the load is
+  above 20. Hold the machine-wide lock
   around it (outside the Chrome lock, never inside), so sessions in every
   workspace take turns:
 
