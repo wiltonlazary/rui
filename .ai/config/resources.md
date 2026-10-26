@@ -23,10 +23,11 @@ runaway test growing off the JS heap can each exhaust the machine.
   while less than 8 GB of memory or 2 GB of disk is available or the load is
   above 20. Hold the machine-wide lock
   around it (outside the Chrome lock, never inside), so sessions in every
-  workspace take turns:
+  workspace take turns. The wait is two hours, as long as another
+  workspace's long job may hold it:
 
   ```sh
-  flock -w 1800 "$HOME/.cache/heavy-job.lock" bash -c 'ulimit -v 6000000; NODE_OPTIONS="--max-old-space-size=1024 --disable-wasm-trap-handler" timeout 300 npm test'
+  flock -w 7200 "$HOME/.cache/heavy-job.lock" bash -c 'ulimit -v 6000000; NODE_OPTIONS="--max-old-space-size=1024 --disable-wasm-trap-handler" timeout 300 npm test'
   ```
 - A job that dies without output, or a session that restarted, may be an OOM:
   check `journalctl -k | grep -i oom` before running it again.
