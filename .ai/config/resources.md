@@ -34,7 +34,7 @@ runaway test growing off the JS heap can each exhaust the machine.
   browser tests included, so only one Chrome runs at a time:
 
   ```sh
-  flock "$HOME/.cache/chrome-bench.lock" <command>
+  flock -w 1800 "$HOME/.cache/chrome-bench.lock" <command>
   ```
 
   Chrome cannot start under `ulimit -v`, so give it a heap cap and a timeout
