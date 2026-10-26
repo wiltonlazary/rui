@@ -42,3 +42,8 @@ runaway test growing off the JS heap can each exhaust the machine.
 - Record the load with every benchmark reading.
 - Never `rm` with an unguarded variable glob. Keep scratch in the project's
   `artifact/tmp/<task>/`, never in tracked paths or outside the project.
+- The machine's shared dev databases (the kt workspace's `mxv_mongo` and
+  `mxv_redis`) keep their files in `kt/mxv-core-dbm/build/_repo__1.0.0/tmp/mongo`
+  and `kt/mxv-core-grd/build/_repo__1.0.0/tmp/redis`. Those `tmp/mongo` and
+  `tmp/redis` are data, never scratch: a cleanup leaves them alone, and the
+  containers stay up (kt's `.ai/config/resources.md`).
