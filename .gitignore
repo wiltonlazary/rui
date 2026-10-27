@@ -5,3 +5,6 @@
 !/AGENTS.md
 !/README.md
 !/.ai/
+
+# local agent state (memory): not part of the published workspace
+/.ai/state/
